@@ -16,7 +16,7 @@ class Transfer
 
   def execute_transaction
     # each transfer can only happen once
-    if self.status == "pending" && self.sender.valid? && self.receiver.valid? && self.sender.balance > self.amount
+    if self.status == "pending" && self.valid? && self.sender.balance > self.amount
       self.sender.balance -= self.amount # was using - which didn't mutate balance
       self.receiver.deposit(self.amount)
       self.status = "complete"
